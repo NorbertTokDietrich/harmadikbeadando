@@ -14,6 +14,8 @@ public:
     virtual void draw(int infocus, genv::event ev);
     virtual void action(genv::event ev);
     virtual void windchange();
+    virtual int returnspeed();
+    virtual int returndirection();
 };
 
 #endif // WIND_HPP_INCLUDED

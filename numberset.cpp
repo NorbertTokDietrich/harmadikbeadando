@@ -3,8 +3,8 @@
 
 using namespace genv;
 
-NumberSet::NumberSet(ParentWindow *parent, int x, int y, int x_size, int y_size, int startnumber, int lower, int upper):
-    ParentWidget(parent, x, y, x_size, y_size), _startnumber(startnumber), _lower(lower), _upper(upper)
+NumberSet::NumberSet(ParentWindow *parent, int x, int y, int x_size, int y_size, int startnumber, int lower, int upper, std::function <void()>fvmuts):
+    ParentWidget(parent, x, y, x_size, y_size), _startnumber(startnumber), _lower(lower), _upper(upper), _fvmuts(fvmuts)
 {
     _up=false;
     _down=false;
@@ -74,6 +74,7 @@ void NumberSet::action(event ev)
     {
         _startnumber=_lower;
     }
+    _fvmuts();
 }
 
 int NumberSet::number()

@@ -13,9 +13,9 @@ Arena::Arena(ParentWindow *parent, int x, int y, int x_size, int y_size, int hei
 
 void Arena::draw(int infocus, event ev)
 {
-    gout<<move_to(0,_height1)<<color(255,255,255)<<box(350,4);
-    gout<<move_to(350,_height1)<<color(255,255,255)<<line_to(450,_height2);
-    gout<<move_to(450,_height2)<<color(255,255,255)<<box(350,4);
+    gout<<move_to(0,_height1)<<color(0,0,0)<<box(350,4);
+    gout<<move_to(350,_height1)<<color(0,0,0)<<line_to(450,_height2);
+    gout<<move_to(450,_height2)<<color(0,0,0)<<box(350,4);
 }
 
 void Arena::action(event ev)

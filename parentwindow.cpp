@@ -21,7 +21,7 @@ void ParentWindow::event_loop()
 {
     event ev;
     int focus=-1;
-    while(gin>>ev && ev.keycode!=key_escape)
+    while(gin>>ev && ev.keycode!=key_escape || ev.type==ev_timer)
     {
         int check=-1;
         gout<<move_to(0,0)<<color(119,119,119)<<box(_X,_Y);

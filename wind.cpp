@@ -24,7 +24,7 @@ void Wind::draw(int infocus, event ev)
         _speed=1+rand()%(10);
         _direction=-1+rand()%3;
     }
-    if(_direction==-1)
+    if(_direction==1)
     {
         gout<<move_to(_x+5,_y+30)<<color(255,255,255)<<text("East");
     }
@@ -32,7 +32,7 @@ void Wind::draw(int infocus, event ev)
     {
         gout<<move_to(_x+5,_y+30)<<color(255,255,255)<<text("Quiet");
     }
-    if(_direction==1)
+    if(_direction==-1)
     {
         gout<<move_to(_x+5,_y+30)<<color(255,255,255)<<text("West");
     }
@@ -48,6 +48,16 @@ void Wind::action(event ev)
 void Wind::windchange()
 {
     _change=true;
+}
+
+int Wind::returnspeed()
+{
+    return _speed;
+}
+
+int Wind::returndirection()
+{
+    return _direction;
 }
 
 
