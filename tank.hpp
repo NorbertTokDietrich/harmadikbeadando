@@ -6,8 +6,8 @@
 
 class Tank:public ParentWidget{
 protected:
-    int _side;
     int _angle;
+    int _side;
     double _lx;
     double _ly;
     double _rx;
@@ -36,8 +36,18 @@ public:
     virtual void setwindspeed(int n);
     virtual int returnx();
     virtual int returny();
+    virtual int returnlx();
+    virtual int returnly();
+    virtual int returnrx();
+    virtual int returnry();
     virtual int returnshoot1();
     virtual int returnshoot2();
+    virtual void setshoot1();
+    virtual void setshoot2();
+    virtual void refreshpositionleft();
+    virtual void refreshpositionright();
+    virtual bool firsttankok(int a, int b);
+    virtual bool secondtankok(int a, int b);
 };
 
 #endif // TANK_HPP_INCLUDED

@@ -21,46 +21,90 @@ void ParentWindow::event_loop()
 {
     event ev;
     int focus=-1;
-    while(gin>>ev && ev.keycode!=key_escape || ev.type==ev_timer)
+    while(gin>>ev && ev.keycode!=key_escape)
     {
-        int check=-1;
-        gout<<move_to(0,0)<<color(119,119,119)<<box(_X,_Y);
-        if(ev.type==ev_mouse)
+        if(everythingok)
         {
-            for(size_t i=0; i<w.size(); i++)
+            int check=-1;
+            gout<<move_to(0,0)<<color(119,119,119)<<box(_X,_Y);
+            if(ev.type==ev_mouse)
             {
-                if(w[i]->is_clicked(ev.pos_x, ev.pos_y))
+                for(size_t i=0; i<w.size(); i++)
                 {
-                    focus=i;
+                    if(w[i]->is_clicked(ev.pos_x, ev.pos_y))
+                    {
+                        focus=i;
+                    }
                 }
             }
-        }
-        for(ParentWidget * pw : w)
-        {
-            pw->draw(0, ev);
-        }
-        if (focus!=-1)
-        {
-            w[focus]->action(ev);
-            w[focus]->draw(1, ev);
-        }
-        if(ev.type==ev_mouse)
-        {
-            for (size_t i=0; i<w.size(); i++)
-            {
-                if (w[i]->is_clicked(ev.pos_x, ev.pos_y))
-                {
-                    check = i;
-                }
-            }
-        }
-        if(check==-1)
-        {
-            for (ParentWidget * pw : w)
+            for(ParentWidget * pw : w)
             {
                 pw->draw(0, ev);
             }
+            if (focus!=-1)
+            {
+                w[focus]->action(ev);
+                w[focus]->draw(1,ev);
+            }
+            w[_first_tank]->action(ev);
+            w[_second_tank]->action(ev);
+
+            /*if(ev.type==ev.timer)
+            {
+                w[_first_tank]->draw(ev);
+                w[_second_tank]->draw(ev);
+            }*/
+
+            if(ev.type==ev_mouse)
+            {
+                for (size_t i=0; i<w.size(); i++)
+                {
+                    if (w[i]->is_clicked(ev.pos_x, ev.pos_y))
+                    {
+                        check = i;
+                    }
+                }
+            }
+            if(check==-1)
+            {
+                for (ParentWidget * pw : w)
+                {
+                    pw->draw(0, ev);
+                }
+            }
+        }
+        else
+        {
+            gout<<move_to(0,0)<<color(119,119,119)<<box(_X,_Y);
+            gout << font("LiberationSans-Regular.ttf",30);
+            gout<<move_to(300,200)<<color(255,255,255)<<text("GAME OVER");
         }
         gout << refresh;
     }
+}
+
+void ParentWindow::setok()
+{
+    everythingok=false;
+}
+
+int ParentWindow::returnok()
+{
+    return everythingok;
+}
+
+void ParentWindow::settanklocationinvector(int a, int b)
+{
+    _first_tank=a;
+    _second_tank=b;
+}
+
+int ParentWindow::returnthosevalues1()
+{
+    return _first_tank;
+}
+
+int ParentWindow::returnthosevalues2()
+{
+    return _second_tank;
 }
