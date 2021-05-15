@@ -156,8 +156,8 @@ MyWindow::MyWindow():ParentWindow(800,600)
         secondfire();
     });
     area=new Arena(this, 10, 10, 10, 10, heightleft, heightright);
-    tankleft=new Tank(this, 100, heightleft-50, 10, 10, 15, 1);
-    tankright=new Tank(this, X-200, heightright-50, 10, 10, 15, 2);
+    tankleft=new Tank(this, 100, heightleft-50, 10, 10, 15, 1, 2);
+    tankright=new Tank(this, X-200, heightright-50, 10, 10, 15, 2, -3);
     for(size_t i=0; i<w.size(); i++)
     {
         if(w[i]==tankleft)

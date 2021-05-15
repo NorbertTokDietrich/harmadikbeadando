@@ -6,8 +6,8 @@
 using namespace genv;
 using namespace std;
 
-Tank::Tank(ParentWindow *parent, int x, int y, int x_size, int y_size, int angle, int side):
-    ParentWidget(parent, x, y, x_size, y_size), _angle(angle), _side(side)
+Tank::Tank(ParentWindow *parent, int x, int y, int x_size, int y_size, int angle, int side, int diff):
+    ParentWidget(parent, x, y, x_size, y_size), _angle(angle), _side(side), _diff(diff)
 {
     _angle=15;
     _shooting1=false;
@@ -33,33 +33,50 @@ void Tank::draw(int infocus, event ev)
 {
     double pi = 3.14159265359;
     _radian=(_angle * (pi / 180));
-    gout<<move_to(_x, _y)<<color(43,159,39)<<box(100,40);
-    gout<<move_to(_x+10, _y+40)<<color(50,50,50)<<box(80,10);
-    gout<<move_to(_x+25, _y-15)<<color(43,159,39)<<box(50,15);
+    gout<<move_to(_x,_y)<<color(0,0,0)<<box(100,40);
+    gout<<move_to(_x+2, _y+2)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<box(96,36);
+    gout<<move_to(_x+10,_y+40)<<color(0,0,0)<<box(80,10);
+    gout<<move_to(_x+12, _y+40)<<color(50,50,50)<<box(76,8);
+    gout<<move_to(_x+25, _y-15)<<color(0,0,0)<<box(50,15);
+    gout<<move_to(_x+27, _y-13)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<box(46,13);
+    gout << font("LiberationSans-Regular.ttf",20);
+    gout<<move_to(_x+45,_y+5)<<color(0,0,0)<<text(to_string(_side));
 
     if(_side==1)
     {
-        for(int i=0; i<6; i++)
+        gout<<move_to(_x+75,_y-5)<<color(0,0,0)<<line_to(_x+120,_heightleftd-55-65*sin(_radian));
+        for(int i=1; i<4; i++)
         {
-            gout<<move_to(_x+75,_y-5-i)<<color(43,159,39)<<line_to(_x+120,_heightleftd-50-65*sin(_radian)-i);
+            gout<<move_to(_x+75,_y-5-i)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<line_to(_x+120,_heightleftd-55-i-65*sin(_radian)-i);
         }
+        gout<<move_to(_x+75,_y-9)<<color(0,0,0)<<line_to(_x+120,_heightleftd-60-65*sin(_radian)-1)<<line_to(_x+120,_heightleftd-55-65*sin(_radian));
     }
     if(_side==2)
     {
-        for(int i=0; i<6; i++)
+        gout<<move_to(_x+25,_y-5)<<color(0,0,0)<<line_to(_x-20,_heightrightd-55-65*sin(_radian));
+        for(int i=1; i<4; i++)
         {
-            gout<<move_to(_x+25,_y-5-i)<<color(43,159,39)<<line_to(_x-20,_heightrightd-50-65*sin(_radian)-i);
+            gout<<move_to(_x+25,_y-5-i)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<line_to(_x-20,_heightrightd-55-i-65*sin(_radian)-i);
         }
+        gout<<move_to(_x+25, _y-9)<<color(0,0,0)<<line_to(_x-20,_heightrightd-60-65*sin(_radian)-1)<<line_to(_x-20,_heightrightd-55-65*sin(_radian));
     }
 
     if(_shooting1)
     {
-        gout<<move_to(_lx, _ly)<<color(255,255,255)<<box(5,5);
+        gout<<move_to(_lx, _ly)<<color(0,0,0)<<line_to(_lx-2,_ly-2)<<move_to(_lx, _ly)
+        <<line_to(_lx,_ly-2)<<move_to(_lx, _ly)<<line_to(_lx+2,_ly-2)<<move_to(_lx, _ly)
+        <<line_to(_lx+2,_ly)<<move_to(_lx, _ly)<<line_to(_lx+2,_ly+2)<<move_to(_lx, _ly)
+        <<line_to(_lx,_ly+2)<<move_to(_lx, _ly)<<line_to(_lx-2,_ly+2)<<move_to(_lx, _ly)
+        <<line_to(_lx-2,_ly);
     }
 
     if(_shooting2)
     {
-        gout<<move_to(_rx, _ry)<<color(255,255,255)<<box(5,5);
+        gout<<move_to(_rx, _ry)<<color(0,0,0)<<line_to(_rx-2,_ry-2)<<move_to(_rx, _ry)
+        <<line_to(_rx,_ry-2)<<move_to(_rx, _ry)<<line_to(_rx+2,_ry-2)<<move_to(_rx, _ry)
+        <<line_to(_rx+2,_ry)<<move_to(_rx, _ry)<<line_to(_rx+2,_ry+2)<<move_to(_rx, _ry)
+        <<line_to(_rx,_ry+2)<<move_to(_rx, _ry)<<line_to(_rx-2,_ry+2)<<move_to(_rx, _ry)
+        <<line_to(_rx-2,_ry);
     }
 
     //gout<<move_to(50,250)<<color(255,255,255)<<text(to_string(_shooting1));
@@ -76,7 +93,7 @@ void Tank::action(event ev)
 {
     if(_shooting1)
     {
-        _lx=_lx+_initialspeed*cos(_radian)/2+_windspeed/5+_winddirection/2;
+        _lx=_lx+_initialspeed*cos(_radian)/2+_windspeed*_winddirection/10;
         _ly=_ly-_initialspeed*sin(_radian)+9.81*_t;
         _t=_t+0.001;
         if(_ly>_heightrightd-10 && _lx>450 && _lx<790)
@@ -103,7 +120,7 @@ void Tank::action(event ev)
     }
     if(_shooting2)
     {
-        _rx=_rx-_initialspeed*cos(_radian)/2-_windspeed/5-_winddirection/2;
+        _rx=_rx-_initialspeed*cos(_radian)/2-_windspeed*_winddirection/10;
         _ry=_ry-_initialspeed*sin(_radian)+9.81*_t;
         _t=_t+0.001;
         if(_ry>_heightleftd-10 && _rx<350 && _rx>10)

@@ -17,6 +17,12 @@ public:
     virtual void draw(int infocus, genv::event ev);
     virtual void action(genv::event ev);
     virtual bool is_pressed();
+    virtual int returnx();
+    virtual int returny();
+    virtual int returnlx();
+    virtual int returnly();
+    virtual int returnrx();
+    virtual int returnry();
 };
 
 #endif // BUTTON_HPP_INCLUDED

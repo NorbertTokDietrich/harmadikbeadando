@@ -35,3 +35,33 @@ bool Button::is_pressed()
 {
     return _pressed;
 }
+
+int Button::returnx()
+{
+    return _x;
+}
+
+int Button::returny()
+{
+    return _y;
+}
+
+int Button::returnlx()
+{
+    return _x;
+}
+
+int Button::returnly()
+{
+    return _y;
+}
+
+int Button::returnrx()
+{
+    return _x;
+}
+
+int Button::returnry()
+{
+    return _y;
+}

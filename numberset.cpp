@@ -82,3 +82,32 @@ int NumberSet::number()
     return _startnumber;
 }
 
+int NumberSet::returnx()
+{
+    return _x;
+}
+
+int NumberSet::returny()
+{
+    return _y;
+}
+
+int NumberSet::returnlx()
+{
+    return _x;
+}
+
+int NumberSet::returnly()
+{
+    return _y;
+}
+
+int NumberSet::returnrx()
+{
+    return _x;
+}
+
+int NumberSet::returnry()
+{
+    return _y;
+}

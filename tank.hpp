@@ -22,8 +22,9 @@ protected:
     int _initialspeed;
     int _windspeed;
     int _winddirection;
+    int _diff;
 public:
-    Tank(ParentWindow *parent, int x, int y, int x_size, int y_size, int angle, int side);
+    Tank(ParentWindow *parent, int x, int y, int x_size, int y_size, int angle, int side, int diff);
     virtual void draw(int infocus, genv::event ev);
     virtual void action(genv::event ev);
     virtual void goleft();

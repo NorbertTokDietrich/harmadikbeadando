@@ -20,6 +20,12 @@ public:
     virtual void draw(int infocus, genv::event ev);
     virtual void action(genv::event ev);
     virtual int number();
+    virtual int returnx();
+    virtual int returny();
+    virtual int returnlx();
+    virtual int returnly();
+    virtual int returnrx();
+    virtual int returnry();
 };
 
 #endif // NUMBERSET_HPP_INCLUDED

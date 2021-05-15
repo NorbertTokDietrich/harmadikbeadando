@@ -13,6 +13,12 @@ public:
     virtual bool is_clicked(int x_mouse, int y_mouse);
     virtual void draw(int infocus, genv::event ev)=0;
     virtual void action(genv::event ev)=0;
+    virtual int returnx()=0;
+    virtual int returny()=0;
+    virtual int returnlx()=0;
+    virtual int returnly()=0;
+    virtual int returnrx()=0;
+    virtual int returnry()=0;
 };
 
 #endif // PARENTWIDGET_HPP_INCLUDED

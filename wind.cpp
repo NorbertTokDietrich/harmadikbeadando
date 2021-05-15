@@ -7,7 +7,7 @@ using namespace std;
 Wind::Wind(ParentWindow *parent, int x, int y, int x_size, int y_size):
     ParentWidget(parent, x, y, x_size, y_size)
 {
-    _speed=1+rand()%(10);
+    _speed=1+rand()%(5);
     _direction=-1+rand()%3;
     _change=false;
 }
@@ -60,5 +60,32 @@ int Wind::returndirection()
     return _direction;
 }
 
+int Wind::returnx()
+{
+    return _x;
+}
 
+int Wind::returny()
+{
+    return _y;
+}
 
+int Wind::returnlx()
+{
+    return _x;
+}
+
+int Wind::returnly()
+{
+    return _y;
+}
+
+int Wind::returnrx()
+{
+    return _x;
+}
+
+int Wind::returnry()
+{
+    return _y;
+}

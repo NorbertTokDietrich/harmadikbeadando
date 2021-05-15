@@ -22,3 +22,33 @@ void Arena::action(event ev)
 {
 
 }
+
+int Arena::returnx()
+{
+    return _x;
+}
+
+int Arena::returny()
+{
+    return _y;
+}
+
+int Arena::returnlx()
+{
+    return _x;
+}
+
+int Arena::returnly()
+{
+    return _y;
+}
+
+int Arena::returnrx()
+{
+    return _x;
+}
+
+int Arena::returnry()
+{
+    return _y;
+}

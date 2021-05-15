@@ -133,3 +133,33 @@ std::string OptionSet::answearstring()
     }
     return lista[_ans+_temp];
 }
+
+int OptionSet::returnx()
+{
+    return _x;
+}
+
+int OptionSet::returny()
+{
+    return _y;
+}
+
+int OptionSet::returnlx()
+{
+    return _x;
+}
+
+int OptionSet::returnly()
+{
+    return _y;
+}
+
+int OptionSet::returnrx()
+{
+    return _x;
+}
+
+int OptionSet::returnry()
+{
+    return _y;
+}

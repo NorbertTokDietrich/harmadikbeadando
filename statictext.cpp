@@ -29,3 +29,33 @@ void StaticText::deletestr()
 {
     _cimke="";
 }
+
+int StaticText::returnx()
+{
+    return _x;
+}
+
+int StaticText::returny()
+{
+    return _y;
+}
+
+int StaticText::returnlx()
+{
+    return _x;
+}
+
+int StaticText::returnly()
+{
+    return _y;
+}
+
+int StaticText::returnrx()
+{
+    return _x;
+}
+
+int StaticText::returnry()
+{
+    return _y;
+}

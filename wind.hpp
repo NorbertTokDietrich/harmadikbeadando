@@ -16,6 +16,12 @@ public:
     virtual void windchange();
     virtual int returnspeed();
     virtual int returndirection();
+    virtual int returnx();
+    virtual int returny();
+    virtual int returnlx();
+    virtual int returnly();
+    virtual int returnrx();
+    virtual int returnry();
 };
 
 #endif // WIND_HPP_INCLUDED
