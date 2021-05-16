@@ -44,21 +44,21 @@ void Tank::draw(int infocus, event ev)
 
     if(_side==1)
     {
-        gout<<move_to(_x+75,_y-5)<<color(0,0,0)<<line_to(_x+120,_heightleftd-55-65*sin(_radian));
+        gout<<move_to(_x+75,_y-5)<<color(0,0,0)<<line_to(_x+120-20*sin(_radian),_heightleftd-55-40*sin(_radian));
         for(int i=1; i<4; i++)
         {
-            gout<<move_to(_x+75,_y-5-i)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<line_to(_x+120,_heightleftd-55-i-65*sin(_radian)-i);
+            gout<<move_to(_x+75,_y-5-i)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<line_to(_x+120-20*sin(_radian),_heightleftd-55-i-40*sin(_radian)-i);
         }
-        gout<<move_to(_x+75,_y-9)<<color(0,0,0)<<line_to(_x+120,_heightleftd-60-65*sin(_radian)-1)<<line_to(_x+120,_heightleftd-55-65*sin(_radian));
+        gout<<move_to(_x+75,_y-9)<<color(0,0,0)<<line_to(_x+120-20*sin(_radian),_heightleftd-60-40*sin(_radian)-1)<<line_to(_x+120-20*sin(_radian),_heightleftd-55-40*sin(_radian));
     }
     if(_side==2)
     {
-        gout<<move_to(_x+25,_y-5)<<color(0,0,0)<<line_to(_x-20,_heightrightd-55-65*sin(_radian));
+        gout<<move_to(_x+25,_y-5)<<color(0,0,0)<<line_to(_x-20+20*sin(_radian),_heightrightd-55-40*sin(_radian));
         for(int i=1; i<4; i++)
         {
-            gout<<move_to(_x+25,_y-5-i)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<line_to(_x-20,_heightrightd-55-i-65*sin(_radian)-i);
+            gout<<move_to(_x+25,_y-5-i)<<color(43-_diff*10,159-_diff*10,39-_diff*10)<<line_to(_x-20+20*sin(_radian),_heightrightd-55-i-40*sin(_radian)-i);
         }
-        gout<<move_to(_x+25, _y-9)<<color(0,0,0)<<line_to(_x-20,_heightrightd-60-65*sin(_radian)-1)<<line_to(_x-20,_heightrightd-55-65*sin(_radian));
+        gout<<move_to(_x+25, _y-9)<<color(0,0,0)<<line_to(_x-20+20*sin(_radian),_heightrightd-60-40*sin(_radian)-1)<<line_to(_x-20+20*sin(_radian),_heightrightd-55-40*sin(_radian));
     }
 
     if(_shooting1)
@@ -78,15 +78,6 @@ void Tank::draw(int infocus, event ev)
         <<line_to(_rx,_ry+2)<<move_to(_rx, _ry)<<line_to(_rx-2,_ry+2)<<move_to(_rx, _ry)
         <<line_to(_rx-2,_ry);
     }
-
-    //gout<<move_to(50,250)<<color(255,255,255)<<text(to_string(_shooting1));
-    //gout<<move_to(50,300)<<color(255,255,255)<<text(to_string(_shooting2));
-    //gout<<move_to(300,250)<<color(255,255,255)<<text(to_string(_x));
-    //gout<<move_to(300,300)<<color(255,255,255)<<text(to_string(_y));
-    //gout<<move_to(120,250)<<color(255,255,255)<<text(to_string(_lx));
-    //gout<<move_to(120,300)<<color(255,255,255)<<text(to_string(_ly));
-    //gout<<move_to(190,320)<<color(255,255,255)<<text(to_string(_rx));
-    //gout<<move_to(190,350)<<color(255,255,255)<<text(to_string(_ry));
 }
 
 void Tank::action(event ev)
@@ -175,9 +166,9 @@ void Tank::goleft()
         }
         else
         {
-            if(_x<=22)
+            if(_x<22)
             {
-                _x=_x+5;
+                _x=_x+11;
             }
         }
     }
@@ -189,9 +180,9 @@ void Tank::goleft()
         }
         else
         {
-            if(_x<=452)
+            if(_x<452)
             {
-                _x=_x+5;
+                _x=_x+11;
             }
         }
     }
@@ -207,9 +198,9 @@ void Tank::goright()
         }
         else
         {
-            if(_x>=248)
+            if(_x>248)
             {
-                _x=_x-5;
+                _x=_x-11;
             }
         }
     }
@@ -221,9 +212,9 @@ void Tank::goright()
         }
         else
         {
-            if(_x>=678)
+            if(_x>678)
             {
-                _x=_x-5;
+                _x=_x-11;
             }
         }
     }
@@ -316,11 +307,11 @@ void Tank::setshoot2()
 void Tank::refreshpositionleft()
 {
     _lx=_x+120;
-    _ly=_y-50*sin(_radian);
+    _ly=_y-60*sin(_radian);
 }
 
 void Tank::refreshpositionright()
 {
     _rx=_x-20;
-    _ry=_y-50*sin(_radian);
+    _ry=_y-60*sin(_radian);
 }

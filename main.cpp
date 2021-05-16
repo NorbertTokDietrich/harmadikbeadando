@@ -57,6 +57,7 @@ public:
         if(returnok())
         {
             tankleft->goleft();
+            refreshleft();
         }
     }
     void firsttankright()
@@ -64,6 +65,7 @@ public:
         if(returnok())
         {
             tankleft->goright();
+            refreshleft();
         }
     }
     void secondtankleft()
@@ -71,6 +73,7 @@ public:
         if(returnok())
         {
             tankright->goleft();
+            refreshright();
         }
     }
     void secondtankright()
@@ -78,10 +81,12 @@ public:
         if(returnok())
         {
             tankright->goright();
+            refreshright();
         }
     }
     void firstfire()
     {
+        addtoorder();
         tankleft->setshoot1();
         tankleft->setinitialspeed(strength1->number());
         tankleft->setangle(degree1->number());
@@ -92,6 +97,7 @@ public:
     }
     void secondfire()
     {
+        addtoorder();
         tankright->setshoot2();
         tankright->setinitialspeed(strength1->number());
         tankright->setangle(degree2->number());
@@ -118,7 +124,7 @@ MyWindow::MyWindow():ParentWindow(800,600)
     {
         refreshleft();
     });
-    degree1=new NumberSet(this, 100, Y-60, 60, 40, 15, 0, 75, [&]()
+    degree1=new NumberSet(this, 100, Y-60, 60, 40, 15, 0, 60, [&]()
     {
         refreshleft();
     });
@@ -126,7 +132,7 @@ MyWindow::MyWindow():ParentWindow(800,600)
     {
         refreshright();
     });
-    degree2=new NumberSet(this, X-80, Y-60, 60, 40, 15, 0, 75, [&]()
+    degree2=new NumberSet(this, X-80, Y-60, 60, 40, 15, 0, 60, [&]()
     {
         refreshright();
     });

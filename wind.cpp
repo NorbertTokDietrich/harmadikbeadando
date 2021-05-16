@@ -21,7 +21,7 @@ void Wind::draw(int infocus, event ev)
     gout<<move_to(_x+_x_size-62,_y+1)<<color(255,255,255)<<text("Speed");
     if(_change)
     {
-        _speed=1+rand()%(10);
+        _speed=1+rand()%(5);
         _direction=-1+rand()%3;
     }
     if(_direction==1)

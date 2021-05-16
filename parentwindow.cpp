@@ -34,13 +34,12 @@ void ParentWindow::event_loop()
         int ry1=w[_second_tank]->returnry();
         if(lx1>=x2 && lx1<=(x2+100) && ly1>=(y2-15))
         {
-            everythingoksecond=false;
+            everythingok1=false;
         }
         if(rx1>=x1 && rx1<=(x1+100) && ry1>=(y1-15))
         {
-            everythingokfirst=false;
+            everythingok2=false;
         }
-
         int check=-1;
         if(ev.type==ev_mouse)
         {
@@ -55,8 +54,6 @@ void ParentWindow::event_loop()
             {
                 w[focus]->action(ev);
             }
-            w[_first_tank]->action(ev);
-            w[_second_tank]->action(ev);
             for (size_t i=0; i<w.size(); i++)
             {
                 if (w[i]->is_clicked(ev.pos_x, ev.pos_y))
@@ -68,9 +65,17 @@ void ParentWindow::event_loop()
 
         if(ev.type==ev_timer)
         {
-            if(everythingokfirst && everythingoksecond)
+            if(everythingok1 && everythingok2)
             {
                 gout<<move_to(0,0)<<color(119,119,119)<<box(_X,_Y);
+                if(_order%2==1)
+                {
+                    gout<<move_to(10,120)<<color(255,255,255)<<text("Player One, please shoot!");
+                }
+                if(_order%2==0)
+                {
+                    gout<<move_to(500,120)<<color(255,255,255)<<text("Player Two, please shoot!");
+                }
                 for(ParentWidget * pw : w)
                 {
                     pw->draw(0, ev);
@@ -93,7 +98,7 @@ void ParentWindow::event_loop()
             }
             else
             {
-                if(everythingokfirst)
+                if(everythingok2)
                 {
                     gout<<move_to(0,0)<<color(119,119,119)<<box(_X,_Y);
                     for(ParentWidget * pw : w)
@@ -139,4 +144,9 @@ int ParentWindow::returnthosevalues1()
 int ParentWindow::returnthosevalues2()
 {
     return _second_tank;
+}
+
+void ParentWindow::addtoorder()
+{
+    _order++;
 }
