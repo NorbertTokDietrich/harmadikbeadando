@@ -17,7 +17,7 @@ OptionSet::OptionSet(ParentWindow *parent, int x, int y, int x_size, int y_size,
     _temp=0;
     _seged2=(_windowheight-_y)/_y_size;
     std::string szo="";
-    for(int i=0; i<_inputsentence.size(); i++)
+    for(size_t i=0; i<_inputsentence.size(); i++)
     {
         if(_inputsentence[i]=='/')
         {

@@ -35,6 +35,10 @@ protected:
     Arena * area;
     Tank * tankleft;
     Tank * tankright;
+    StaticText * strengthtext1;
+    StaticText * angletext1;
+    StaticText * strengthtext2;
+    StaticText * angletext2;
     int heightleft=Y-100;
     int heightright=Y-200;
     int lx;
@@ -88,22 +92,24 @@ public:
         int order=returnorder();
         if(order%2==1)
         {
+            refreshleft();
             addtoorder();
-            tankleft->setshoot1();
             tankleft->setinitialspeed(strength1->number());
             tankleft->setangle(degree1->number());
             tankleft->setwinddirection(wind->returndirection());
             tankleft->setwindspeed(wind->returnspeed());
+            tankleft->setshoot1();
             tankleft->shoot1();
         }
         else
         {
+            refreshright();
             addtoorder();
-            tankright->setshoot2();
-            tankright->setinitialspeed(strength1->number());
+            tankright->setinitialspeed(strength2->number());
             tankright->setangle(degree2->number());
             tankright->setwinddirection(wind->returndirection());
             tankright->setwindspeed(wind->returnspeed());
+            tankright->setshoot2();
             tankright->shoot2();
         }
         wind->windchange();
@@ -120,7 +126,7 @@ public:
     }
 };
 
-MyWindow::MyWindow():ParentWindow(800,600)
+MyWindow::MyWindow():ParentWindow(X,Y)
 {
     strength1=new NumberSet(this, 20, Y-60, 60, 40, 1, 1, 4, [&]()
     {
@@ -162,6 +168,10 @@ MyWindow::MyWindow():ParentWindow(800,600)
     area=new Arena(this, 10, 10, 10, 10, heightleft, heightright);
     tankleft=new Tank(this, 100, heightleft-50, 10, 10, 15, 1, 2);
     tankright=new Tank(this, X-200, heightright-50, 10, 10, 15, 2, -3);
+    strengthtext1=new StaticText(this, 20, Y-80, 10, 10, "Strength");
+    angletext1=new StaticText(this, 110, Y-80, 10, 10, "Angle");
+    strengthtext2=new StaticText(this, X-160, Y-80, 10, 10, "Strength");
+    angletext2=new StaticText(this, X-70, Y-80, 10, 10, "Angle");
     for(size_t i=0; i<w.size(); i++)
     {
         if(w[i]==tankleft)

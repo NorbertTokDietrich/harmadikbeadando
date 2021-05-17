@@ -114,7 +114,7 @@ void Tank::action(event ev)
         _rx=_rx-_initialspeed*cos(_radian)/2-_windspeed*_winddirection/10;
         _ry=_ry-_initialspeed*sin(_radian)+9.81*_t;
         _t=_t+0.001;
-        if(_ry>_heightleftd-10 && _rx<350 && _rx>10)
+        if(_ry>_heightleftd-10 && _rx<450 && _rx>10)
         {
             _shooting2=false;
             _t=0;
@@ -306,12 +306,12 @@ void Tank::setshoot2()
 
 void Tank::refreshpositionleft()
 {
-    _lx=_x+120;
-    _ly=_y-60*sin(_radian);
+    _lx=_x+120-20*sin(_radian);
+    _ly=_y-40*sin(_radian)-5;
 }
 
 void Tank::refreshpositionright()
 {
-    _rx=_x-20;
-    _ry=_y-60*sin(_radian);
+    _rx=_x-20+20*sin(_radian);
+    _ry=_y-40*sin(_radian)-5;
 }

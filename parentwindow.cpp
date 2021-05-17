@@ -41,24 +41,27 @@ void ParentWindow::event_loop()
             everythingok2=false;
         }
         int check=-1;
-        if(ev.type==ev_mouse)
+        if(ev.type==ev_mouse || ev.type==ev_key)
         {
-            for(size_t i=0; i<w.size(); i++)
+            if(everythingok1 && everythingok2)
             {
-                if(w[i]->is_clicked(ev.pos_x, ev.pos_y))
+                for(size_t i=0; i<w.size(); i++)
                 {
-                    focus=i;
+                    if(w[i]->is_clicked(ev.pos_x, ev.pos_y))
+                    {
+                        focus=i;
+                    }
                 }
-            }
-            if (focus!=-1)
-            {
-                w[focus]->action(ev);
-            }
-            for (size_t i=0; i<w.size(); i++)
-            {
-                if (w[i]->is_clicked(ev.pos_x, ev.pos_y))
+                if (focus!=-1)
                 {
-                    check = i;
+                    w[focus]->action(ev);
+                }
+                for (size_t i=0; i<w.size(); i++)
+                {
+                    if (w[i]->is_clicked(ev.pos_x, ev.pos_y))
+                    {
+                        check = i;
+                    }
                 }
             }
         }
