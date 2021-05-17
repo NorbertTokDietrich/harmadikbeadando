@@ -31,8 +31,7 @@ protected:
     Button * left2;
     Button * right1;
     Button * right2;
-    Button * fire1;
-    Button * fire2;
+    Button * fire;
     Arena * area;
     Tank * tankleft;
     Tank * tankright;
@@ -84,26 +83,29 @@ public:
             refreshright();
         }
     }
-    void firstfire()
+    void tankfire()
     {
-        addtoorder();
-        tankleft->setshoot1();
-        tankleft->setinitialspeed(strength1->number());
-        tankleft->setangle(degree1->number());
-        tankleft->setwinddirection(wind->returndirection());
-        tankleft->setwindspeed(wind->returnspeed());
-        tankleft->shoot1();
-        wind->windchange();
-    }
-    void secondfire()
-    {
-        addtoorder();
-        tankright->setshoot2();
-        tankright->setinitialspeed(strength1->number());
-        tankright->setangle(degree2->number());
-        tankright->setwinddirection(wind->returndirection());
-        tankright->setwindspeed(wind->returnspeed());
-        tankright->shoot2();
+        int order=returnorder();
+        if(order%2==1)
+        {
+            addtoorder();
+            tankleft->setshoot1();
+            tankleft->setinitialspeed(strength1->number());
+            tankleft->setangle(degree1->number());
+            tankleft->setwinddirection(wind->returndirection());
+            tankleft->setwindspeed(wind->returnspeed());
+            tankleft->shoot1();
+        }
+        else
+        {
+            addtoorder();
+            tankright->setshoot2();
+            tankright->setinitialspeed(strength1->number());
+            tankright->setangle(degree2->number());
+            tankright->setwinddirection(wind->returndirection());
+            tankright->setwindspeed(wind->returnspeed());
+            tankright->shoot2();
+        }
         wind->windchange();
     }
     void refreshleft()
@@ -120,7 +122,7 @@ public:
 
 MyWindow::MyWindow():ParentWindow(800,600)
 {
-    strength1=new NumberSet(this, 20, Y-60, 60, 40, 1, 1, 3, [&]()
+    strength1=new NumberSet(this, 20, Y-60, 60, 40, 1, 1, 4, [&]()
     {
         refreshleft();
     });
@@ -128,7 +130,7 @@ MyWindow::MyWindow():ParentWindow(800,600)
     {
         refreshleft();
     });
-    strength2=new NumberSet(this, X-160, Y-60, 60, 40, 1, 1, 3, [&]()
+    strength2=new NumberSet(this, X-160, Y-60, 60, 40, 1, 1, 4, [&]()
     {
         refreshright();
     });
@@ -153,13 +155,9 @@ MyWindow::MyWindow():ParentWindow(800,600)
     {
         secondtankright();
     });
-    fire1=new Button(this, 300, Y-60, 60, 40, "Fire", [&]()
+    fire=new Button(this, 370, Y-60, 60, 40, "Fire", [&]()
     {
-        firstfire();
-    });
-    fire2=new Button(this, X-360, Y-60, 60, 40, "Fire", [&]()
-    {
-        secondfire();
+        tankfire();
     });
     area=new Arena(this, 10, 10, 10, 10, heightleft, heightright);
     tankleft=new Tank(this, 100, heightleft-50, 10, 10, 15, 1, 2);

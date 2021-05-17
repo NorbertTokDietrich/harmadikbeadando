@@ -150,3 +150,8 @@ void ParentWindow::addtoorder()
 {
     _order++;
 }
+
+int ParentWindow::returnorder()
+{
+    return _order;
+}

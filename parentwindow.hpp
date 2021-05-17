@@ -24,6 +24,7 @@ public:
     int returnthosevalues1();
     int returnthosevalues2();
     void addtoorder();
+    int returnorder();
 };
 
 #endif // PARENTWINDOW_HPP_INCLUDED
